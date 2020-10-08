@@ -828,7 +828,7 @@
 !     rev. 10.2.72 Nov.  21/19  - NK flow_sta_name: changed from 12 to 8 char  to accomodate US sta names
 !     rev. 10.2.73 Dec.  14/19  - NK Convert rules_tl.f90 to Fortran 90 & fix drawdown comps.
 !     rev. 10.3.00 Dec.  **/19  = NK Conversion f77 to f90      
-!     rev. 10.3.01 Jan.  05/20  = Use nudge_flaf.xyz file for station area check      
+!     rev. 10.3.01 Jan.  05/20  = Use nudge_flag.xyz file for station area check      
 !     rev. 10.3.02 Jan.  17/20  = changed event\*.evt to event\*.cfg      
 !     rev. 10.3.03 Jan.  21/20  = NK added dd_ice & dd_thaw to the resume.txt file      
 !     rev. 10.3.04 Jan.  29/20  = NK added smrflg = "t" for FEWS only      
@@ -843,10 +843,11 @@
 !     rev. 10.4.24 Jun.  05/20  = NK ensemble revision
 !     rev. 10.4.25 Jul.  25/20  = NK Changed rules_sl to use hourly rule intervales
 !     rev. 10.4.26 Aug.  26/20  = NK Added Kling–Gupta efficiency (KGE) score
+!     rev. 10.4.27 Sep.  28/20  = NK Write parfile.scv during dds run
 !           
       program_name='CHARM     '
-      program_version=' 10.4.26  '
-      program_date='2020/08/28'
+      program_version=' 10.4.27  '
+      program_date='2020/10/05'
 
       
 !     rev. 9.5.44  Oct.  27/08  - NK: removed code & obj modules for hasp & rainbow
@@ -1581,13 +1582,13 @@
 !       write the par file in results\CHARM.txt
         if(iopt99)then
 !         **********************************************************************
-        call write_par_10(51,0)
+          call write_par_10(51,0)
 !         **********************************************************************
+        endif
 !         write results\parfile.csv
 !         **********************************************************************
           call write_par_10(99,26)
 !         **********************************************************************
-        endif
 
 !       dds is a logical variable and can be used to suppress output
         if(dds_flag.eq.1)dds=.true.
